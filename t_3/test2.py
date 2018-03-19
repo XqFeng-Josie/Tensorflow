@@ -4,8 +4,9 @@ import tensorflow as tf
 a = tf.constant([1.0,2.0],name='a')
 b = tf.constant([3.0,4.0],name='b')
 result = tf.add(a,b,name='add')
-print result#返回张量结构
-print tf.Session().run(result)
+print (result) #返回张量结构
+print (tf.Session().run(result))
+
 tf.Session().close()#显式关闭会话
 
 #上下文管理会话资源
@@ -18,7 +19,7 @@ sess = tf.Session()
 with sess.as_default():
     print(result.eval())
     #对应元素相乘，矩阵乘法式matmul
-    print (a*b).eval()
+    print ((a*b).eval())
 
 sess = tf.Session()
 #下面两句话有一样的功能
@@ -60,8 +61,8 @@ v1 = tf.constant([1.0,2.0,3.0,4.0])
 v2 = tf.constant([4.0,1.0,2.0,5.0])
 
 sess2 = tf.InteractiveSession()
-print tf.greater(v1,v2).eval()
-print tf.select(tf.greater(v1,v2),v1,v2).eval()
+print (tf.greater(v1,v2).eval())
+#print (tf.select(tf.greater(v1,v2),v1,v2).eval())
 sess2.close()
 
 

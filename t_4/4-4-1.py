@@ -21,7 +21,7 @@ y = tf.matmul(x,w1)
 loss_less = 10
 loss_more = 1
 #自定义损失函数+L2正则化损失，0.5是lamada参数
-loss = tf.reduce_sum(tf.select(tf.greater(y,y_),
+loss = tf.reduce_sum(tf.where(tf.greater(y,y_),
                     (y-y_)*loss_more,(y_-y)*loss_less))+tf.contrib.layers.l2_regularizer(0.5)(w1)
 
 
@@ -41,7 +41,7 @@ Y = [[x1+x2+rdm.rand()/10.0-0.05] for (x1,x2) in X]
 with tf.Session() as sess:
     init_op = tf.initialize_all_variables()
     sess.run(init_op)
-    print sess.run(w1)
+    print (sess.run(w1))
     
     steps = 5000
     for i in range(steps):
@@ -53,4 +53,4 @@ with tf.Session() as sess:
             total_loss = sess.run(
                 loss,feed_dict={x:X,y_:Y})
             print("After %d training_step(s) ,loss on all data is %g"%(i,total_loss))
-    print sess.run(w1)
+    print (sess.run(w1))

@@ -63,11 +63,11 @@ def train(mnist):
     variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY,global_step)
     #对神经网络里所有可训练参数（列表）应用滑动平均模型，每次进行这个操作，列表里的元素都会得到更新
     variable_averages_op = variable_averages.apply(tf.trainable_variables())
-    #计算使用了滑动平均的网络前向传播结果，滑动平均buri改变变量本身的值，而是维护一个影子变量来记录其滑动平均值
+    #计算使用了滑动平均的网络前向传播结果，滑动平均不会改变变量本身的值，而是维护一个影子变量来记录其滑动平均值
     #因此当需要使用这个滑动平均值的时候，需要明确调用average函数
     average_y = inference(x,variable_averages,weights1,biaes1,weights2,biaes2)
     
-    #当只有一个标准答案的时候，使用sprase_softmax_cross_entropy_with_logits计算损失，可以加速计算
+    #当只有一个标准答案的时候，使用sparse_softmax_cross_entropy_with_logits计算损失，可以加速计算
     #参数：不包含softma层的前向传播结果，训练数据的正确答案
     #因为标准答案是一个长度为10的一维数组，而该函数需要提供一个正确答案的数字，
     #因此需要使用tf.argmax函数得到正确答案的对应类别编号
@@ -98,12 +98,13 @@ def train(mnist):
     accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
     #初始化会话，并开始训练
     with tf.Session() as sess:
-        #init_op = tf.initialize_all_variables()
-        #sess.run(init_op)
+
+        init_op = tf.global_variables_initializer()
+        sess.run(init_op)
         #初始化所有参数，同上面两句作用一致
         #tf.initialize_all_variables().run()
-	tf.global_variables_initializer().run()
-        #准备验证数据，一般在神经网络的训练过程中会通过验证数据来判断大致停止的条件和评判训练的效果 
+	    #tf.global_variables_initializer().run()
+        #准备验证数据，一般在神经网络的训练过程中会通过验证数据来判断大致停止的条件和评判训练的效果
         validate_feed = {x:mnist.validation.images,y_:mnist.validation.labels}
         #准备测试数据，在实际中，这部分数据在训练时是不可见的，这个数据只是作为模型优劣的最后评价标准
         test_feed = {x:mnist.test.images,y_:mnist.test.labels}
@@ -113,9 +114,8 @@ def train(mnist):
             _,loss_value, step = sess.run([train_op, loss, global_step], feed_dict={x: xs, y_: ys})
             if i%1000==0:
                 print("After %d training step(s), loss on training batch is %g." % (step, loss_value))
-
                 validate_acc = sess.run(accuracy,feed_dict=validate_feed)
-                print "After %d training step(s),validation accuracy using average model is %g "%(step,validate_acc)
+                print ("After %d training step(s),validation accuracy using average model is %g "%(step,validate_acc))
                 test_acc = sess.run(accuracy,feed_dict=test_feed)
                 print("After %d training step(s) testing accuracy using average model is %g"%(step,test_acc))
 

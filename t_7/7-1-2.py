@@ -35,7 +35,7 @@ with tf.Session() as sess:
     #启动多线程处理输入数据
     coord = tf.train.Coordinator()
     threads = tf.train.start_queue_runners(sess=sess,coord=coord)
-    #每次云霞可以读取TFRecord文件的一个样例，当所有的样例都读完之后，在此样例里程序会在重头读取。
+    #每次运行可以读取TFRecord文件的一个样例，当所有的样例都读完之后，在此样例里程序会在重头读取。
     for i in range(10):
         image,label,pixel = sess.run([images,labels,pixels])
         #print label

@@ -32,8 +32,8 @@ Y = [[int(x1+x2<1)] for (x1,x2) in X]
 with tf.Session() as sess:
     init_op = tf.initialize_all_variables()
     sess.run(init_op)
-    print sess.run(w1)
-    print sess.run(w2)
+    print (sess.run(w1))
+    print (sess.run(w2))
     
     steps = 5000
     for i in range(steps):
@@ -45,5 +45,5 @@ with tf.Session() as sess:
             total_cross_entropy = sess.run(
                 cross_entropy,feed_dict={x:X,y_:Y})
             print("After %d training_step(s) ,cross_entropy on all data is %g"%(i,total_cross_entropy))
-    print sess.run(w1)
-    print sess.run(w2)
+    print (sess.run(w1))
+    print (sess.run(w2))

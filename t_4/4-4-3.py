@@ -21,14 +21,14 @@ with tf.Session() as sess:
     sess.run(init_op)
     
     #获取滑动平均之后变量的取值
-    print sess.run([v1,ema.average(v1)])
+    print(sess.run([v1,ema.average(v1)]))
     
     #更新v1的值为5
     sess.run(tf.assign(v1,5))
     #更新v1的滑动平均值，衰减率为min{0.99,(1+step)/(10+step)=0.1}=0.1,
     #所以v1的滑动平均被更新为0.1*0+0.9*5=4.5
     sess.run(maintain_average_op)
-    print sess.run([v1,ema.average(v1)])
+    print (sess.run([v1,ema.average(v1)]))
     
     #更新迭代的轮数
     sess.run(tf.assign(step,10000))
@@ -36,8 +36,8 @@ with tf.Session() as sess:
     #这里的衰减率变成0.99
     #v1 = 0.99*4.5+0.01*10=4.555
     sess.run(maintain_average_op)
-    print sess.run([v1,ema.average(v1)])
+    print (sess.run([v1,ema.average(v1)]))
     
     #再次更新滑动平均值
     sess.run(maintain_average_op)
-    print sess.run([v1,ema.average(v1)])
+    print (sess.run([v1,ema.average(v1)]))

@@ -59,7 +59,7 @@ with tf.Session() as sess:
         image,label,pixel = sess.run([images,labels,pixels])
         #获取并打印组合之后的样例
         cur_image_batch,cur_label_batch = sess.run([image_batch,label_batch])
-        print cur_image_batch,cur_label_batch
+        print (cur_image_batch,cur_label_batch)
         #print pixel
     coord.request_stop()
     coord.join(threads)
