@@ -29,15 +29,16 @@ images = tf.decode_raw(features['image_raw'],tf.uint8)
 labels = tf.cast(features['label'],tf.int32)
 pixels = tf.cast(features['pixels'],tf.int32)
 
-with tf.Session() as sess:
+# 使用自动线程管理的Session类，不然会报错
+with tf.train.MonitoredSession() as sess:
     #本例中没有声明变量，但是使用match_filenames_once函数需要初始化一些变量
-    tf.global_variables_initializer().run()
+    # tf.global_variables_initializer().run()
     #启动多线程处理输入数据
-    coord = tf.train.Coordinator()
-    threads = tf.train.start_queue_runners(sess=sess,coord=coord)
+    # coord = tf.train.Coordinator()
+    # threads = tf.train.start_queue_runners(sess=sess,coord=coord)
     #每次运行可以读取TFRecord文件的一个样例，当所有的样例都读完之后，在此样例里程序会在重头读取。
     for i in range(10):
         image,label,pixel = sess.run([images,labels,pixels])
-        #print label
-    coord.request_stop()
-    coord.join(threads)
+        print(label)
+    # coord.request_stop()
+    # coord.join(threads)
