@@ -17,6 +17,6 @@ for i in range(len(X)):
     before_activation = np.dot(state,w_cell_state)+X[i]*w_cell_input+b_cell
     state = np.tanh(before_activation)
     final_output = np.dot(state,w_output)+b_output
-    print "before activation:",before_activation
-    print "state",state
-    print  "output:",final_output
+    print("before activation:",before_activation)
+    print("state",state)
+    print("output:",final_output)
