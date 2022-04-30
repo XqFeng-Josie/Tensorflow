@@ -2,7 +2,7 @@
 #使用循环神经网络实现语言模型，使用的数据集是PTB 文本数据集
 import numpy as np
 import tensorflow as tf
-import reader1 as reader
+import reader as reader
 
 DATA_PATH = '../simple-examples/data'
 #隐藏层的规模

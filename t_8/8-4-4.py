@@ -67,7 +67,7 @@ def lstm_model(X, y):
 
 
 # 封装之前定义的lstm。
-regressor = SKCompat(learn.Estimator(model_fn=lstm_model, model_dir="Model/model_2"))
+regressor = SKCompat(learn.Estimator(model_fn=lstm_model, model_dir="Model/model_4"))
 
 # 生成数据。
 test_start = TRAINING_EXAMPLES * SAMPLE_GAP

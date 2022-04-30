@@ -1,12 +1,14 @@
-��������鼮��TensorFlowʵսGoogle���ѧϰ��ܡ���д
+代码根据书籍《TensorFlow实战Google深度学习框架》编写
 
-�����˸����½ڵ���Ҫ����
+包含了各个章节的主要代码
 
-�ļ�ע�ͣ�
-MNIST_data:mnist��д���ݼ����������漰�����ݵ����λ�ã������ʵ������޸�
-simple_examples:��PTB���ݼ�����Ҫ����LSTMʵ������ģ��
-flower_photos:�������ݼ���ʹ��ʱ��Ҫ��ѹ
-inception_dec_2015��google2015��μ�imagenet������ѵ��ģ�ͣ�ʹ��ʱ��Ҫ��ѹ
+文件注释：
+MNIST_data:mnist手写数据集，代码中涉及到数据的相对位置，请根据实际情况修改
+simple_examples:是PTB数据集，主要用在LSTM实现语言模型
 
-������ܴ������⣬���ָ�̡�
-2017/05/18 
+以下数据集或者模型，在t_6会使用到，需要下载，下载链接放在t_6下的readme.txt
+flower_photos:花的数据集
+inception_dec_2015：google2015年参加imagenet大赛的训练模型
+
+代码可能存在问题，请多指教。
+2017/05/18

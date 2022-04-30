@@ -121,7 +121,7 @@ def train(mnist):
                 print("After %d training step(s) testing accuracy using average model is %g"%(step,test_acc))
 
 def main(argv=None):
-    mnist = input_data.read_data_sets("MNIST_data/",one_hot=True)
+    mnist = input_data.read_data_sets("../MNIST_data/",one_hot=True)
     train(mnist)
 if __name__ == '__main__':
     tf.app.run()

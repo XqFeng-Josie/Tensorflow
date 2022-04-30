@@ -16,4 +16,4 @@ with tf.Session() as sess:
     for _ in range(5):
         #运行q_inc将执行数据出对列，加一，入队列的过程
         v,_= sess.run([x,q_inc])
-        print v
+        print (v)

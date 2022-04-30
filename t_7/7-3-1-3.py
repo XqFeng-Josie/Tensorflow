@@ -21,7 +21,8 @@ with tf.Session() as sess:
     #tf.train.start_queue_runners会默认执行tf.GraphKeys.QUEUE_RUNNERS集合里的所有QueueRunner
     threads = tf.train.start_queue_runners(sess=sess,coord=coord)
     #获取队列中的取值
-    for _ in range(3):print sess.run(out_tensor)[0]
+    for _ in range(3):
+        print (sess.run(out_tensor)[0])
    # 使用 Coordinator来停止所有线程
     coord.request_stop()
     coord.join(threads)

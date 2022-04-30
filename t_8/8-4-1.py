@@ -1,7 +1,6 @@
 #coding=utf-8
 import tensorflow as tf
-import reader1 as reader #网上找的更新的reader类
-
+import reader as reader
 #读取数据并打印长度及前100位数据。
 #存放原始数据的路径
 DATA_PATH = "../simple-examples/data"
